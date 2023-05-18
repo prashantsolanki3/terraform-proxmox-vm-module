@@ -31,7 +31,7 @@ resource "local_file" "host_vars" {
         "host_username" = var.user,
         "authorized_keys" = file(var.public_key_file),
         "glusterfs_mounts" = join(",", var.glusterfs_mounts),
-        "glusterfs_home_mounts" = join(",", ["home_${var.module_name}_${var.user}"]),
+        "glusterfs_home_mounts" = join(",", var.glusterfs_home_mounts),
         "glusterfs_server" = var.glusterfs_server
       }
     }

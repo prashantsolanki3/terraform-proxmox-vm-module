@@ -105,6 +105,11 @@ variable "glusterfs_mounts" {
   type        = list(string)
 }
 
+variable "glusterfs_home_mounts"{
+  description = "GlusterFS home mounts"
+  type        = list(string)
+}
+
 variable "config_files" {
   description = "List of config files for the target VM"
   type = list(object({
