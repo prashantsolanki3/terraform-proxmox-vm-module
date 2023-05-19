@@ -117,3 +117,10 @@ variable "config_files" {
     destination_path = string
   }))
 }
+
+variable "host_vars" {
+  description = "Ansbile Dots host vars for the target VM"
+  type = list(object({
+    key  = string
+  }))
+}
