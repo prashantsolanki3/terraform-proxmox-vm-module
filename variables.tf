@@ -121,6 +121,7 @@ variable "config_files" {
 variable "host_vars" {
   description = "Ansbile Dots host vars for the target VM"
   type = list(object({
-    key  = string
+    key  = string,
+    value = string
   }))
 }
