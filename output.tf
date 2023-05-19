@@ -37,7 +37,9 @@ resource "local_file" "host_vars" {
   # Ansible Variables
   content = templatefile("${path.module}/templates/simple-yaml.tpl",
     {
-      vars = local.host_vars
+      vars = {
+        host_vars = local.host_vars
+        }
     }
   )
   filename = "./.dots/${var.module_name}_host_vars.yaml"
