@@ -22,17 +22,6 @@ resource "local_file" "module_info" {
   filename = "./.dots/${var.module_name}_module_info"
 }
 
-locals {
-  host_vars = concat([
-        { key = "env", value = var.env }, 
-        { key = "host_username", value = var.user},
-        { key = "authorized_keys", value = file(var.public_key_file),},
-        { key = "glusterfs_mounts", value = join(",", var.glusterfs_mounts)},
-        { key = "glusterfs_home_mounts", value = join(",", var.glusterfs_home_mounts)},
-        { key = "glusterfs_server", value = var.glusterfs_server}
-        ], var.host_vars)
-}
-
 resource "local_file" "host_vars" {
   # Ansible Variables
   content = templatefile("${path.module}/templates/simple-yaml.tpl",
