@@ -123,9 +123,9 @@ variable "github_account" {
   type = string
 }
 
-variable "github_repo" {
-  description = "Github runner repo"
-  type = string
+variable "github_repos" {
+  description = "Github runner repos"
+  type = list(string)
 }
 
 variable "github_access_token" {

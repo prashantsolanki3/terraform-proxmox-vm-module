@@ -34,7 +34,7 @@ resource "local_file" "host_vars" {
         "glusterfs_home_mounts" = join(",", var.glusterfs_home_mounts),
         "glusterfs_server" = var.glusterfs_server,
         "github_account" = var.github_account,
-        "github_repo" = var.github_repo,
+        "github_repos" = join(",", var.github_repos),
         "access_token" = var.github_access_token
         }
     }
