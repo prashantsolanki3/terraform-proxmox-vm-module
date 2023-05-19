@@ -32,9 +32,10 @@ resource "local_file" "host_vars" {
         "authorized_keys" = file(var.public_key_file),
         "glusterfs_mounts" = join(",", var.glusterfs_mounts),
         "glusterfs_home_mounts" = join(",", var.glusterfs_home_mounts),
-        "glusterfs_server" = var.glusterfs_server
-        "github_account" = var.github_account
-        "github_repo" = var.github_repo
+        "glusterfs_server" = var.glusterfs_server,
+        "github_account" = var.github_account,
+        "github_repo" = var.github_repo,
+        "access_token" = var.github_access_token
         }
     }
   )

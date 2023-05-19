@@ -127,3 +127,8 @@ variable "github_repo" {
   description = "Github runner repo"
   type = string
 }
+
+variable "github_access_token" {
+  description = "Github access token"
+  type = string
+}
