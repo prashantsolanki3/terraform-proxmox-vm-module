@@ -118,10 +118,12 @@ variable "config_files" {
   }))
 }
 
-variable "host_vars" {
-  description = "Ansbile Dots host vars for the target VM"
-  type = list(object({
-    key  = string,
-    value = string
-  }))
+variable "github_username" {
+  description = "Github username"
+  type = string
+}
+
+variable "github_repo" {
+  description = "Github runner repo"
+  type = string
 }
