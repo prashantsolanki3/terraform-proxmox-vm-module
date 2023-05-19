@@ -118,8 +118,8 @@ variable "config_files" {
   }))
 }
 
-variable "github_username" {
-  description = "Github username"
+variable "github_account" {
+  description = "Github account"
   type = string
 }
 
