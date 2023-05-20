@@ -4,6 +4,7 @@ resource "local_file" "ansible_hosts" {
     {
       dev  = var.ipv4
       user = var.user
+      private_key = var.private_key_file
     }
   )
   filename = "./.dots/${var.module_name}_hosts"
