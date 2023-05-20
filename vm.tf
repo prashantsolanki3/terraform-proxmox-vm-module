@@ -60,21 +60,13 @@ resource "proxmox_vm_qemu" "dev" {
   }
 
   # Remove Existing ssh fingerprint
-  # TODO: Fix ipv4 not found
-  # provisioner "local-exec" {
-  #   command = <<EOT
-  #   #!/bin/bash
-
-  #   # Read key-value pairs from file and store in associative array
-  #   declare -A pairs
-
-  #   while IFS='=' read -r key value; do
-  #       pairs["$key"]="$value"
-  #   done < ./.dots/${var.module_name}_module_info
-
-  #   ssh-keygen -f ~/.ssh/known_hosts -R $pairs["ipv4"]
-  #   EOT
-  # }
+  provisioner "local-exec" {
+    command = <<EOT
+    if [[ -f "~/.ssh/known_hosts" ]]; then
+      ssh-keygen -f ~/.ssh/known_hosts -R ${var.ipv4}
+    fi
+    EOT
+  }
 }
 
 # resource "null_resource" "git_clone" {
