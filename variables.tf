@@ -24,23 +24,25 @@ variable "private_key_file" {
 variable "template" {
   description = "Template Name"
   type        = string
-  default     = "U2004-DOCKER-TEMPLATE"
+  default     = "ubuntu2004-docker-template2"
 }
 
 variable "vm_id" {
   description = "Proxmox vm id"
   type        = string
+  default     = "12345"
 }
 
 variable "user" {
   description = "Username"
   type        = string
+  default     = "ubuntu"
 }
 
 variable "cpu_count" {
   description = "cpu_count"
   type        = number
-  default     = 4
+  default     = 2
 }
 
 variable "memory" {
@@ -52,7 +54,7 @@ variable "memory" {
 variable "hostname" {
   description = "Hostname"
   type        = string
-  default     = "dev-box"
+  default     = "vm-module"
 }
 
 variable "ipv4_gateway" {
@@ -75,7 +77,7 @@ variable "ipv4_data" {
 variable "disk_size" {
   description = "Disk size"
   type        = string
-  default     = "32G"
+  default     = "16G"
 }
 
 variable "disk_storage" {
@@ -93,21 +95,25 @@ variable "dots_ansible_repo" {
 variable "module_name" {
   description = "Module Name"
   type = string
+  default = "vm-module"
 }
 
 variable "glusterfs_server" {
   description = "Glusterfs server"
   type        = string
+  default     = ""
 }
 
 variable "glusterfs_mounts" {
   description = "GlusterFS mounts"
   type        = list(string)
+  default     = []
 }
 
 variable "glusterfs_home_mounts"{
   description = "GlusterFS home mounts"
   type        = list(string)
+  default     = []
 }
 
 variable "config_files" {
@@ -116,19 +122,23 @@ variable "config_files" {
     source_path      = string
     destination_path = string
   }))
+  default = []
 }
 
 variable "github_account" {
   description = "Github account"
   type = string
+  default = "prashantsolanki3"
 }
 
 variable "github_repos" {
   description = "Github runner repos"
   type = list(string)
+  default = []
 }
 
 variable "github_access_token" {
   description = "Github access token"
   type = string
+  default = ""
 }
