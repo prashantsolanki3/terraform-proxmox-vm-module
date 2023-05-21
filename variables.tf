@@ -98,23 +98,23 @@ variable "module_name" {
   default = "vm-module"
 }
 
-variable "glusterfs_server" {
-  description = "Glusterfs server"
-  type        = string
-  default     = ""
-}
+# variable "glusterfs_server" {
+#   description = "Glusterfs server"
+#   type        = string
+#   default     = ""
+# }
 
-variable "glusterfs_mounts" {
-  description = "GlusterFS mounts"
-  type        = list(string)
-  default     = []
-}
+# variable "glusterfs_mounts" {
+#   description = "GlusterFS mounts"
+#   type        = list(string)
+#   default     = []
+# }
 
-variable "glusterfs_home_mounts"{
-  description = "GlusterFS home mounts"
-  type        = list(string)
-  default     = []
-}
+# variable "glusterfs_home_mounts"{
+#   description = "GlusterFS home mounts"
+#   type        = list(string)
+#   default     = []
+# }
 
 variable "config_files" {
   description = "List of config files for the target VM"
