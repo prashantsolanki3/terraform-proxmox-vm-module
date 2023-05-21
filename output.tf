@@ -31,9 +31,13 @@ resource "local_file" "host_vars" {
         "env" = var.env,
         "host_username" = var.user,
         "authorized_keys" = file(var.public_key_file),
-        "glusterfs_mounts" = join(",", var.glusterfs_mounts),
-        "glusterfs_home_mounts" = join(",", var.glusterfs_home_mounts),
-        "glusterfs_server" = var.glusterfs_server,
+
+        # Removed as the gluster config now 
+        # rests in the ansible dots var/<module>_defaults.yml
+        
+        # "glusterfs_mounts" = join(",", var.glusterfs_mounts),
+        # "glusterfs_home_mounts" = var.glusterfs_home_mount,
+        # "glusterfs_server" = var.glusterfs_server,
         "github_account" = var.github_account,
         "github_repos" = join(",", var.github_repos),
         "access_token" = var.github_access_token
