@@ -148,12 +148,12 @@ resource "null_resource" "ansible_hms_docker" {
   }
 }
 
-resource "null_resource" "ansible_hms_docker_cleanup" {
-  depends_on = [null_resource.ansible_hms_docker]
-  # Run Ansible Playbook
-  provisioner "local-exec" {
-    command = <<EOT
-    rm -rf ${var.config_path}/${var.module_name}_ansible
-    EOT
-  }
-}
+# resource "null_resource" "ansible_hms_docker_cleanup" {
+#   depends_on = [null_resource.ansible_hms_docker]
+#   # Run Ansible Playbook
+#   provisioner "local-exec" {
+#     command = <<EOT
+#     rm -rf ${var.config_path}/${var.module_name}_ansible
+#     EOT
+#   }
+# }
