@@ -83,9 +83,9 @@ resource "null_resource" "ansible" {
   # Run Ansible Playbook
   provisioner "local-exec" {
     command = <<EOT
-    if [[ -f "${var.config_path}/${var.module_name}_ansible" ]]; then
-      rm -rf ${var.config_path}/${var.module_name}_ansible
-    fi
+    # if [[ -f "${var.config_path}/${var.module_name}_ansible" ]]; then
+    rm -rf ${var.config_path}/${var.module_name}_ansible
+    # fi
     git clone --depth 1 ${var.dots_ansible_repo} ${var.config_path}/${var.module_name}_ansible
     # Remove .git folder
     # rm -rf ${var.config_path}/${var.module_name}_ansible/.git
@@ -111,9 +111,9 @@ resource "null_resource" "git_clone_hms" {
   # Clone Dots Ansible Project
   provisioner "local-exec" {
     command = <<EOT
-    if [[ -f "${var.config_path}/ansible-hms-docker" ]]; then
-      rm -rf ${var.config_path}/ansible-hms-docker 
-    fi
+    # if [[ -f "${var.config_path}/ansible-hms-docker" ]]; then
+    rm -rf ${var.config_path}/ansible-hms-docker 
+    # fi
     git clone --depth 1 https://github.com/prashantsolanki3/ansible-hms-docker ${var.config_path}/ansible-hms-docker
     # Remove .git folder
     # rm -rf ${var.config_path}/ansible-hms-docker/.git
