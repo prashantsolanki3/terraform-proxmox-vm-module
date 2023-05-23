@@ -7,7 +7,7 @@ resource "local_file" "ansible_hosts" {
       private_key = var.private_key_file
     }
   )
-  filename = "./.dots/${var.module_name}_hosts"
+  filename = "${var.config_path}/${var.module_name}_hosts"
 }
 
 resource "local_file" "module_info" {
@@ -20,7 +20,7 @@ resource "local_file" "module_info" {
       }
     }
   )
-  filename = "./.dots/${var.module_name}_module_info"
+  filename = "${var.config_path}/${var.module_name}_module_info"
 }
 
 resource "local_file" "host_vars" {
@@ -44,7 +44,7 @@ resource "local_file" "host_vars" {
         }
     }
   )
-  filename = "./.dots/${var.module_name}_host_vars.yaml"
+  filename = "${var.config_path}/${var.module_name}_host_vars.yml"
 }
 
 # resource "local_file" "cleanup" {

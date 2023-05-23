@@ -116,6 +116,12 @@ variable "module_name" {
 #   default     = []
 # }
 
+variable "config_path" {
+  description = "Path to store the config files"
+  type = string
+  default = "/mnt/env/vm-template"
+}
+
 variable "config_files" {
   description = "List of config files for the target VM"
   type = list(object({
