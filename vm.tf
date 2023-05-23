@@ -79,6 +79,7 @@ resource "proxmox_vm_qemu" "dev" {
 # }
 
 resource "remote_file" "copy_cifs_credentials" {
+  depends_on = [proxmox_vm_qemu.dev]
   count = var.cifs_credentials_file != "" ? 1 : 0
   conn {
     host        = var.ipv4
