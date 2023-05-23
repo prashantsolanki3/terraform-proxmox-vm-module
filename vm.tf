@@ -78,6 +78,20 @@ resource "proxmox_vm_qemu" "dev" {
 #   }
 # }
 
+resource "remote_file" "copy_cifs_credentials" {
+  count = var.cifs_credentials_file != "" ? 1 : 0
+  conn {
+    host        = var.ipv4
+    port        = 22
+    user        = var.user
+    private_key = file(var.private_key_file)
+  }
+
+  path        = "/home/${var.user}/.cifscredentials"
+  content     = file(var.cifs_credentials_file)
+  permissions = "0600"
+}
+
 resource "null_resource" "ansible" {
   depends_on = [local_file.ansible_hosts, local_file.host_vars, proxmox_vm_qemu.dev]
   # Run Ansible Playbook

@@ -122,6 +122,13 @@ variable "config_path" {
   default = "/mnt/env/vm-template"
 }
 
+variable "cifs_credentials_file" {
+  default = ""
+  type = string
+  description = "Path to the cifs credentials file"
+}
+
+
 variable "config_files" {
   description = "List of config files for the target VM"
   type = list(object({
