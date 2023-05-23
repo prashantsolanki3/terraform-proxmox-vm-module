@@ -13,6 +13,10 @@ terraform {
       source = "hashicorp/local"
       version = "2.4.0"
     }
+    remote = {
+      source = "tenstad/remote"
+      version = "0.1.1"
+    }
   }
   
 }
