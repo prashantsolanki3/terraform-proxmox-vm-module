@@ -24,7 +24,7 @@ variable "private_key_file" {
 variable "template" {
   description = "Template Name"
   type        = string
-  default     = "ubuntu2004-docker-template2"
+  default     = "focal-server-cloudimg-amd64"
 }
 
 variable "vm_id" {
