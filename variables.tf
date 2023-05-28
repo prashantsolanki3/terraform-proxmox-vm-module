@@ -119,7 +119,7 @@ variable "module_name" {
 variable "config_path" {
   description = "Path to store the config files"
   type = string
-  default = "/mnt/env/vm-template"
+  default = "/vm-config"
 }
 
 variable "cifs_credentials_file" {
