@@ -54,10 +54,10 @@ jobs:
           response=$(curl -sS --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
                      "https://api.github.com/repos/${{ github.repository }}/releases/latest")
           # Extract the "tag_name" field from the response using jq
-          release_version=$(echo "$response" | jq -r '.tag_name')
+          version=$(echo "$response" | jq -r '.tag_name')
 
           # Set the output "version" to make it accessible to other steps
-          echo "::set-output name=latest_version::$release_version"
+          echo "::set-output name=latest_version::$version"
 
       - name: Increment version
         id: increment-version
