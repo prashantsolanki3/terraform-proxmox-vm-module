@@ -75,17 +75,22 @@ jobs:
           echo "Latest release version: ${{ env.RELEASE_VERSION }}"
           echo "Incremented version: ${{ env.NEW_VERSION }}"
 
+      - name: Get latest commit message
+        id: get-commit-message
+        run: |
+          # Retrieve the latest commit message and store it as an environment variable
+          commit_message=$(git log -1 --pretty=format:%s)
+          echo "COMMIT_MESSAGE=${commit_message}" >> $GITHUB_ENV
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ steps.get-release.outputs.new_version }}
-          release_name: Release ${{ steps.get-release.outputs.new_version }}
+          tag_name: ${{ env.NEW_VERSION }}
+          release_name: Release ${{ env.NEW_VERSION }}
           body: |
-            Changes in this Release
-            - First Change
-            - Second Change
+            Changes in this Release: ${{ env.COMMIT_MESSAGE }}
           draft: false
           prerelease: false
