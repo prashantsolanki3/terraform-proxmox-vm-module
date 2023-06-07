@@ -56,13 +56,17 @@ jobs:
           # Extract the "tag_name" field from the response using jq
           release_version=$(echo "$response" | jq -r '.tag_name')
 
+          new_version = $release_version + 1
+
           # Set the output "version" to make it accessible to other steps
-          echo "::set-output name=version::$release_version"
+          echo "::set-output name=latest_version::$release_version"
+          echo "::set-output name=new_version::$new_version"
 
       - name: Display latest release version
         run: |
           # Access the output "version" from the previous step
-          echo "Latest release version: ${{ steps.get-release.outputs.version }}"
+          echo "Latest release version: ${{ steps.get-release.outputs.latest_version }}"
+          echo "New release version: ${{ steps.get-release.outputs.new_version }}"
 
       - name: Create Release
         id: create_release
@@ -70,8 +74,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${GITHUB_REF#refs/*/}
-          release_name: Release ${GITHUB_REF#refs/*/}
+          tag_name: ${{ steps.get-release.outputs.new_version }}
+          release_name: Release ${{ steps.get-release.outputs.new_version }}
           body: |
             Changes in this Release
             - First Change
