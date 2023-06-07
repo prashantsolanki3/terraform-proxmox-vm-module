@@ -47,6 +47,23 @@ jobs:
           echo $RELEASE_VERSION
           echo ${{ env.RELEASE_VERSION }}
 
+      - name: Get latest release version
+        id: get-release
+        run: |
+          # Make a GET request to the GitHub API to fetch the latest release
+          response=$(curl -sS --header "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                     "https://api.github.com/repos/${{ github.repository }}/releases/latest")
+          # Extract the "tag_name" field from the response using jq
+          release_version=$(echo "$response" | jq -r '.tag_name')
+
+          # Set the output "version" to make it accessible to other steps
+          echo "::set-output name=version::$release_version"
+
+      - name: Display latest release version
+        run: |
+          # Access the output "version" from the previous step
+          echo "Latest release version: ${{ steps.get-release.outputs.version }}"
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
