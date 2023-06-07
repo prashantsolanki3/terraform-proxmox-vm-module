@@ -56,7 +56,7 @@ jobs:
           # Extract the "tag_name" field from the response using jq
           release_version=$(echo "$response" | jq -r '.tag_name')
 
-          new_version = $release_version + 1
+          new_version = $($release_version + 1)
 
           # Set the output "version" to make it accessible to other steps
           echo "::set-output name=latest_version::$release_version"
