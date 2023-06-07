@@ -56,17 +56,31 @@ jobs:
           # Extract the "tag_name" field from the response using jq
           release_version=$(echo "$response" | jq -r '.tag_name')
 
-          new_version = $($release_version + 1)
-
           # Set the output "version" to make it accessible to other steps
           echo "::set-output name=latest_version::$release_version"
+
+      - name: Increment version
+        id: increment-version
+        run: |
+          # Extract major, minor, and patch components from the version
+          IFS='.' read -ra version_parts <<< "${{ steps.get-release.outputs.version }}"
+          major=${version_parts[0]}
+          minor=${version_parts[1]}
+          patch=${version_parts[2]}
+
+          # Increment the patch version
+          patch=$((patch + 1))
+
+          # Construct the new version
+          new_version="${major}.${minor}.${patch}"
+
+          # Set the output "new_version" to make it accessible to other steps
           echo "::set-output name=new_version::$new_version"
 
-      - name: Display latest release version
+      - name: Display latest release version and incremented version
         run: |
-          # Access the output "version" from the previous step
-          echo "Latest release version: ${{ steps.get-release.outputs.latest_version }}"
-          echo "New release version: ${{ steps.get-release.outputs.new_version }}"
+          echo "Latest release version: ${{ steps.get-release.outputs.version }}"
+          echo "Incremented version: ${{ steps.increment-version.outputs.new_version }}"
 
       - name: Create Release
         id: create_release
