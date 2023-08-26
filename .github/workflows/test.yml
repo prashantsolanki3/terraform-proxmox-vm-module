@@ -15,16 +15,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Prompt for input
-        run: |
-          # Install dialog
-          sudo apt-get update && sudo apt-get install -y dialog
-
-          # Prompt for input
-          input=$(dialog --inputbox "Please enter your input:" 0 0 2>&1 >/dev/tty)
-
-          # Display input
-          echo "You entered: $input"
       - name: Install Cloudflare Warp Client
         run: |
           # Add cloudflare gpg key
@@ -39,6 +29,7 @@ jobs:
       - name: Configure Cloudflare Warp Client
         run: |
           warp-cli --accept-tos teams-enroll prashant-home
+          sleep 60
       
       - name: Check Cloudflare Warp Client Status
         run: warp-cli account
