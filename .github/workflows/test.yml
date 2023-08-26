@@ -25,11 +25,10 @@ jobs:
     
           # Install
           sudo apt-get update && sudo apt-get install cloudflare-warp
-          warp-cli register --help
       - name: Create org file
         run: |
           # Create multi-line file using EOF. Content of the file is the same as the one in the question.
-          cat <<EOF >> cloudflare-warp.xml
+          sudo bash -c 'cat <<EOF >> /var/lib/cloudflare-warp/mdm.xml
           <dict>
             <key>organization</key>
             <string>your-team-name</string>
@@ -38,17 +37,17 @@ jobs:
             <key>auth_client_secret</key>
             <string>CF-Access-Client-Secret: 53aa6848e7db406ebd474308260f05ec71d3ee4508666fc50e6a1d36e064c47a</string>
           </dict>
-          EOF
+          EOF'
       - name: Configure Cloudflare Warp Client
         run: |
-          warp-cli --config $GITHUB_WORKSPACE/cloudflare-warp.xml --accept-tos teams-enroll prashant-home
+          warp-cli --accept-tos teams-enroll prashant-home
           sleep 15
       - name: Register WARP
-        run: warp-cli --config $GITHUB_WORKSPACE/cloudflare-warp.xml --accept-tos register
+        run: warp-cli --accept-tos register
       - name: Check Cloudflare Warp Client Status
-        run: warp-cli --config $GITHUB_WORKSPACE/cloudflare-warp.xml --accept-tos account
+        run: warp-cli --accept-tos account
       - name: Connect to Cloudflare Warp Client
-        run: warp-cli --config $GITHUB_WORKSPACE/cloudflare-warp.xml --accept-tos connect
+        run: warp-cli --accept-tos connect
       - name: Test connection
         run: ping 172.16.1.1
       # - name: HashiCorp - Setup Terraform
