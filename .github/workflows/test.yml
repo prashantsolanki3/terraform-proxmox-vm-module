@@ -32,7 +32,7 @@ jobs:
           sleep 60
       
       - name: Check Cloudflare Warp Client Status
-        run: warp-cli account
+        run: warp-cli --accept-tos account
       # - name: HashiCorp - Setup Terraform
       #   uses: hashicorp/setup-terraform@v2.0.3
         
