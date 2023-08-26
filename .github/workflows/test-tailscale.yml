@@ -18,7 +18,7 @@ jobs:
       - name: Install tailscale
         run: |
           #!/bin/bash
-
+          ssh-keygen -t rsa -q -f "~/.ssh/id_rsa" -N ""
           # Add the Tailscale GPG key
           curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -
 
@@ -37,7 +37,7 @@ jobs:
       
       - name: TEST SSH
         run: |
-          # mkdir ~/.ssh
-          # touch ~/.ssh/known_hosts
-          # ssh-keyscan 100.115.166.129 >> ~/.ssh/known_hosts
+          mkdir ~/.ssh
+          touch ~/.ssh/known_hosts
+          ssh-keyscan 100.115.166.129 >> ~/.ssh/known_hosts
           ssh -vvv -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@100.115.166.129 "echo 'hello world'"
