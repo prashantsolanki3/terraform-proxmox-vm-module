@@ -34,3 +34,7 @@ jobs:
   
       - name: Test connection
         run: ping -c 2 100.96.246.24
+      
+      - name: TEST SSH
+        run: |
+          ssh root@100.96.246.24
