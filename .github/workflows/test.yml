@@ -38,7 +38,7 @@ jobs:
         run: warp-cli --accept-tos connect
       - name: Check Cloudflare Warp Files
         run: |
-          ls -la /etc/wireguard
+          ls -la /etc/*
       - name: Test connection
         run: ping 172.16.1.1
       # - name: HashiCorp - Setup Terraform
