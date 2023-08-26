@@ -29,8 +29,9 @@ jobs:
       - name: Configure Cloudflare Warp Client
         run: |
           warp-cli --accept-tos teams-enroll prashant-home
-          sleep 60
-      
+          sleep 15
+      - name: Register WARP
+        run: warp-cli --accept-tos register
       - name: Check Cloudflare Warp Client Status
         run: warp-cli --accept-tos account
       # - name: HashiCorp - Setup Terraform
