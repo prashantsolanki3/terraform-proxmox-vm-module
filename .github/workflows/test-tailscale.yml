@@ -40,4 +40,4 @@ jobs:
           mkdir ~/.ssh
           touch ~/.ssh/known_hosts
           ssh-keyscan 100.96.246.24 >> ~/.ssh/known_hosts
-          ssh root@100.96.246.24 "echo 'hello world'"
+          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@100.96.246.24 "echo 'hello world'"
