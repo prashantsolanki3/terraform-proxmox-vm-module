@@ -15,7 +15,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        
+      - name: Prompt for input
+        run: |
+          # Install dialog
+          sudo apt-get update && sudo apt-get install -y dialog
+
+          # Prompt for input
+          input=$(dialog --inputbox "Please enter your input:" 0 0 2>&1 >/dev/tty)
+
+          # Display input
+          echo "You entered: $input"
       - name: Install Cloudflare Warp Client
         run: |
           # Add cloudflare gpg key
