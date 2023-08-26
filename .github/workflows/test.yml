@@ -38,6 +38,7 @@ jobs:
             <key>auth_client_secret</key>
             <string>CF-Access-Client-Secret: 53aa6848e7db406ebd474308260f05ec71d3ee4508666fc50e6a1d36e064c47a</string>
           </dict>
+          EOF
       - name: Configure Cloudflare Warp Client
         run: |
           warp-cli --accept-tos teams-enroll prashant-home
