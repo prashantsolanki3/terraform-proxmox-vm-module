@@ -28,8 +28,7 @@ jobs:
       - name: Create org file
         run: |
           # Create multi-line file using EOF. Content of the file is the same as the one in the question.
-          mkdir -p /var/lib/cloudflare-warp
-          cat <<EOF >> /var/lib/cloudflare-warp/mdm.xml
+          cat <<EOF >> cloudflare-warp.xml
           <dict>
             <key>organization</key>
             <string>your-team-name</string>
@@ -41,17 +40,14 @@ jobs:
           EOF
       - name: Configure Cloudflare Warp Client
         run: |
-          warp-cli --accept-tos teams-enroll prashant-home
+          warp-cli --config $GITHUB_WORKSPACE/cloudflare-warp.xml --accept-tos teams-enroll prashant-home
           sleep 15
       - name: Register WARP
-        run: warp-cli --accept-tos register
+        run: warp-cli --config $GITHUB_WORKSPACE/cloudflare-warp.xml --accept-tos register
       - name: Check Cloudflare Warp Client Status
-        run: warp-cli --accept-tos account
+        run: warp-cli --config $GITHUB_WORKSPACE/cloudflare-warp.xml --accept-tos account
       - name: Connect to Cloudflare Warp Client
-        run: warp-cli --accept-tos connect
-      - name: Check Cloudflare Warp Files
-        run: |
-          ls -la /etc/*
+        run: warp-cli --config $GITHUB_WORKSPACE/cloudflare-warp.xml --accept-tos connect
       - name: Test connection
         run: ping 172.16.1.1
       # - name: HashiCorp - Setup Terraform
