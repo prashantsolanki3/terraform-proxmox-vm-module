@@ -25,6 +25,7 @@ jobs:
     
           # Install
           sudo apt-get update && sudo apt-get install cloudflare-warp
+          warp-cli --help
       - name: Create org file
         run: |
           # Create multi-line file using EOF. Content of the file is the same as the one in the question.
