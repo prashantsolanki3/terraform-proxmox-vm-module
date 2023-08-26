@@ -26,7 +26,13 @@ jobs:
     
           # Install
           sudo apt-get update && sudo apt-get install cloudflare-warp
-
+      
+      - name: Configure Cloudflare Warp Client
+        run: |
+          warp-cli teams-enroll prashant-home
+      
+      - name: Check Cloudflare Warp Client Status
+        run: warp-cli account
       # - name: HashiCorp - Setup Terraform
       #   uses: hashicorp/setup-terraform@v2.0.3
         
