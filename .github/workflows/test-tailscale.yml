@@ -18,9 +18,9 @@ jobs:
       - name: Install tailscale
         run: |
           #!/bin/bash
-          mkdir ~/.ssh
-          touch ~/.ssh/known_hosts
-          ssh-keygen -t rsa -q -f "~/.ssh/id_rsa" -N ""
+          sudo mkdir ~/.ssh
+          sudo touch ~/.ssh/known_hosts
+          sudo ssh-keygen -t rsa -q -f "~/.ssh/id_rsa" -N ""
           # Add the Tailscale GPG key
           curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -
 
