@@ -40,4 +40,4 @@ jobs:
       - name: TEST SSH
         run: |
           ssh-keyscan 100.115.166.129 >> ~/.ssh/known_hosts
-          ssh -vvv -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@100.115.166.129 "echo 'hello world'"
+          ssh -vvv -o StrictHostKeyChecking=no root@100.115.166.129 "echo 'hello world'"
