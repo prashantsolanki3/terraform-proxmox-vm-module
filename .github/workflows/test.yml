@@ -29,7 +29,7 @@ jobs:
       
       - name: Configure Cloudflare Warp Client
         run: |
-          warp-cli teams-enroll prashant-home
+          warp-cli --accept-tos teams-enroll prashant-home
       
       - name: Check Cloudflare Warp Client Status
         run: warp-cli account
