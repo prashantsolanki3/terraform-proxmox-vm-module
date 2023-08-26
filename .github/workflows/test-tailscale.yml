@@ -40,4 +40,4 @@ jobs:
           mkdir ~/.ssh
           touch ~/.ssh/known_hosts
           ssh-keyscan 100.96.246.24 >> ~/.ssh/known_hosts
-          ssh -t -T root@100.96.246.24
+          ssh root@100.96.246.24 "echo 'hello world'"
