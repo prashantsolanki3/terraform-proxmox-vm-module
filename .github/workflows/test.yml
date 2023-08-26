@@ -57,7 +57,7 @@ jobs:
       - name: Connect to Cloudflare Warp Client
         run: warp-cli --accept-tos connect
       - name: Test connection
-        run: ping -c 2 172.16.1.1
+        run: ping -c 2 172.16.1.10
       # - name: HashiCorp - Setup Terraform
       #   uses: hashicorp/setup-terraform@v2.0.3
         
