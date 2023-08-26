@@ -33,9 +33,9 @@ jobs:
             <key>organization</key>
             <string>prashant-home</string>
             <key>auth_client_id</key>
-            <string>CF-Access-Client-Id: 44c91d4c7724a9bc41d03af442f1b54b.access</string>
+            <string>44c91d4c7724a9bc41d03af442f1b54b.access</string>
             <key>auth_client_secret</key>
-            <string>CF-Access-Client-Secret: 53aa6848e7db406ebd474308260f05ec71d3ee4508666fc50e6a1d36e064c47a</string>
+            <string>53aa6848e7db406ebd474308260f05ec71d3ee4508666fc50e6a1d36e064c47a</string>
             <key>switch_locked</key>
             <boolean>true</boolean>
             <key>onboarding</key>
