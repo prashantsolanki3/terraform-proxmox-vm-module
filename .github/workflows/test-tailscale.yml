@@ -1,0 +1,36 @@
+name: Test Tailscale
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install tailscale
+        run: |
+          #!/bin/bash
+
+          # Add the Tailscale GPG key
+          curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.gpg | sudo apt-key add -
+
+          # Add the Tailscale repository
+          curl -fsSL https://pkgs.tailscale.com/stable/ubuntu/focal.list | sudo tee /etc/apt/sources.list.d/tailscale.list
+          
+          # Update package list and install Tailscale
+          sudo apt update
+          sudo apt install -y tailscale
+          
+          # Authenticate and bring up Tailscale
+          sudo tailscale up --authkey tskey-auth-kCBADm3CNTRL-m8YrdS2SmPjxviLzzwB6Pjr2RLLuhJV3
+  
+      - name: Test connection
+        run: ping -c 2 100.96.246.24
