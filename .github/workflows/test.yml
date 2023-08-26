@@ -31,7 +31,7 @@ jobs:
           sudo bash -c 'cat <<EOF >> /var/lib/cloudflare-warp/mdm.xml
           <dict>
             <key>organization</key>
-            <string>your-team-name</string>
+            <string>prashant-home</string>
             <key>auth_client_id</key>
             <string>CF-Access-Client-Id: 44c91d4c7724a9bc41d03af442f1b54b.access</string>
             <key>auth_client_secret</key>
