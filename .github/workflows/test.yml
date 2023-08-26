@@ -25,7 +25,19 @@ jobs:
     
           # Install
           sudo apt-get update && sudo apt-get install cloudflare-warp
-      
+      - name: Create org file
+        run: |
+          # Create multi-line file using EOF. Content of the file is the same as the one in the question.
+          mkdir -p /var/lib/cloudflare-warp
+          cat <<EOF >> /var/lib/cloudflare-warp/mdm.xml
+          <dict>
+            <key>organization</key>
+            <string>your-team-name</string>
+            <key>auth_client_id</key>
+            <string>CF-Access-Client-Id: 44c91d4c7724a9bc41d03af442f1b54b.access</string>
+            <key>auth_client_secret</key>
+            <string>CF-Access-Client-Secret: 53aa6848e7db406ebd474308260f05ec71d3ee4508666fc50e6a1d36e064c47a</string>
+          </dict>
       - name: Configure Cloudflare Warp Client
         run: |
           warp-cli --accept-tos teams-enroll prashant-home
