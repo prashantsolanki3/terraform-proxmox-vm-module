@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    # runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+        
+      - name: Install Cloudflare Warp Client
+        run: |
+          # Add cloudflare gpg key
+          curl https://pkg.cloudflareclient.com/pubkey.gpg | sudo gpg --yes --dearmor --output /usr/share/keyrings/cloudflare-warp-archive-keyring.gpg
+                
+          # Add this repo to your apt repositories
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/cloudflare-warp-archive-keyring.gpg] https://pkg.cloudflareclient.com/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/cloudflare-client.list
+    
+          # Install
+          sudo apt-get update && sudo apt-get install cloudflare-warp
+
+      # - name: HashiCorp - Setup Terraform
+      #   uses: hashicorp/setup-terraform@v2.0.3
+        
+      # - name: Install ansible
+      #   run: python3 -m pip install ansible
+      
+      # - name: terraform init
+      #   run: terraform init
+
+      # - name: terraform-apply
+      #   run: terraform apply -var-file=/mnt/env/vm-playground/terraform.tfvars -state=/mnt/env/vm-playground/state/terraform.tfstate --auto-approve
