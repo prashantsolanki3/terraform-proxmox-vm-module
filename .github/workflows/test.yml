@@ -34,6 +34,8 @@ jobs:
         run: warp-cli --accept-tos register
       - name: Check Cloudflare Warp Client Status
         run: warp-cli --accept-tos account
+      - name: Connect to Cloudflare Warp Client
+        run: warp-cli --accept-tos connect
       - name: Test connection
         run: ping 172.16.1.1
       # - name: HashiCorp - Setup Terraform
