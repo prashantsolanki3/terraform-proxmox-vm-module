@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - uses: prashantsolanki3/actions@tailscale
+      - uses: prashantsolanki3/composite-actions@tailscale
         with:
           authkey: tskey-auth-kCBADm3CNTRL-m8YrdS2SmPjxviLzzwB6Pjr2RLLuhJV3
 
